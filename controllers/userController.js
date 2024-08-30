@@ -56,9 +56,41 @@ class UserController {
     }
 }
 
-   
 
- }
+static updateDonation = async (req, res) => {
+    try {
+        let donationName = req.params.name;
+        let updateData = req.body;
+        let donation = await DonationModel.findOneAndUpdate(
+            { title: donationName },
+            updateData,
+            { new: true }
+        );
+        if (!donation)
+            return res.status(400).json({ "message": "Donation not found" });
+        return res.status(200).json({ "message": "Donation updated", donation });
+    } catch (err) {
+        console.log(err);
+        return res.status(501).json({ "message": "error" });
+    }
+}
 
+static deleteDonation = async (req, res) => {
+    try {
+        let donationName = req.params.name;
+        let donation = await DonationModel.findOneAndDelete({ title: donationName });
+        if (!donation)
+            return res.status(400).json({ "message": "Donation not found" });
+        return res.status(200).json({ "message": "Donation deleted" });
+    } catch (err) {
+        console.log(err);
+        return res.status(501).json({ "message": "error" });
+    }
+}
+}
 
 export { UserController }
+
+   
+
+
