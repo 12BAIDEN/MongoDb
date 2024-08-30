@@ -57,40 +57,42 @@ class UserController {
 }
 
 
-static updateDonation = async (req, res) => {
+static updateDonationByTitle = async (req, res) => {
     try {
-        let donationName = req.params.name;
-        let updateData = req.body;
-        let donation = await DonationModel.findOneAndUpdate(
-            { title: donationName },
-            updateData,
-            { new: true }
-        );
+        const { title } = req.params;
+        const update = req.body;
+
+        if (!update)
+            return res.status(400).json({ "message": "no update data provided" });
+
+        const donation = await DonationModel.findOneAndUpdate({ title: title }, update, { new: true });
         if (!donation)
-            return res.status(400).json({ "message": "Donation not found" });
-        return res.status(200).json({ "message": "Donation updated", donation });
+            return res.status(404).json({ "message": "donation not found" });
+
+        return res.status(200).json({ "message": "donation updated", donation });
     } catch (err) {
         console.log(err);
         return res.status(501).json({ "message": "error" });
     }
-}
+};
 
-static deleteDonation = async (req, res) => {
+static deleteDonationByTitle = async (req, res) => {
     try {
-        let donationName = req.params.name;
-        let donation = await DonationModel.findOneAndDelete({ title: donationName });
+        const { title } = req.params;
+        const donation = await DonationModel.findOneAndDelete({ title: title });
+
         if (!donation)
-            return res.status(400).json({ "message": "Donation not found" });
-        return res.status(200).json({ "message": "Donation deleted" });
+            return res.status(404).json({ "message": "donation not found" });
+
+        return res.status(200).json({ "message": "donation deleted" });
     } catch (err) {
         console.log(err);
         return res.status(501).json({ "message": "error" });
     }
-}
+};
 }
 
-export { UserController }
-
+export { UserController };
    
 
 
