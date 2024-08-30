@@ -24,5 +24,8 @@ nonAuthRoute.post("/admin/type", UserController.uploadTypes)
 */
 nonAuthRoute.get("/donations/:id", UserController.getDonationType)
 
+app.put('/donations/:title', UserController.updateDonationByTitle);
+app.delete('/donations/:title', UserController.deleteDonationByTitle);
+
 
 export { nonAuthRoute };
