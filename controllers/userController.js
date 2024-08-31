@@ -110,6 +110,7 @@ class UserController {
             return res.status(500).json({ message: "Internal server error" });
         }
     }
+    
     static updateDonation = async(req, res) => {
         try {
         let title = req.body.title
