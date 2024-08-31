@@ -94,25 +94,22 @@ class UserController {
     
     static deleteDonation = async(req, res) => {
         try {
-            console.log('Received data:', req.body); // Log the received data
-    
-            let title = req.body.title;
+            const title = req.body.title;
             if (!title) {
                 return res.status(400).json({ message: "Title of donation is required" });
             }
     
-            let response = await DonationModel.deleteOne({ title });
+            const response = await DonationModel.deleteOne({ title });
             if (response.deletedCount === 0) {
                 return res.status(404).json({ message: "Donation not found" });
             }
     
             return res.status(200).json({ message: "Donation deleted successfully" });
         } catch (err) {
-            console.log(err);
+            console.error('Error deleting donation:', err);
             return res.status(500).json({ message: "Internal server error" });
         }
     }
-    
     static updateDonation = async(req, res) => {
         try {
         let title = req.body.title
