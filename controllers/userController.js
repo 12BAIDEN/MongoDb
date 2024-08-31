@@ -94,7 +94,7 @@ class UserController {
     
     static deleteDonation = async(req, res) => {
         try {
-            const title = req.body.title;
+            let title = req.body.title
             if (!title) {
                 return res.status(400).json({ message: "Title of donation is required" });
             }
