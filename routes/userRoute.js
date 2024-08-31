@@ -24,8 +24,6 @@ nonAuthRoute.post("/admin/type", UserController.uploadTypes)
 */
 nonAuthRoute.get("/donations/:id", UserController.getDonationType)
 
-//get login
-nonAuthRoute.get("/items", UserController.getAllNonMoney)
 //delete donation
 nonAuthRoute.post("/admin/delete-donation", UserController.deleteDonation)
 
