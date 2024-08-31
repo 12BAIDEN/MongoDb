@@ -11,25 +11,7 @@ class UserController {
      * @param {Object} req : http request object
      * @param {Object} res : http response object
      */
-    static adminRegister = async(req, res) => {
-        let details = req.body
-        if(!(details.email && details.password && details.name)) 
-            return res.status(400).json({"message": "not all fields given"})
-        let user = await new UserModel(details).save()
-        return res.status(200).json({"message": "admin saved"})
-    }
-
-    static adminLogin = async(req, res) => {
-        let details = req.body
-        if(!(details.email && details.password)) 
-            return res.status(400).json({"message": "not all fields given"})
-        let user = await  UserModel.findOne({"email": details.email})
-        if(!user)
-            return res.status(400).json({"message":"user not registered"})
-        if(user.password !== details.password)
-            return res.status(400).json({"message": "wrong password"})
-        return res.status(200).json({"message": "login success", user})
-    }
+   
 
     static uploadTypes = async (req, res) => {
         //get categories
