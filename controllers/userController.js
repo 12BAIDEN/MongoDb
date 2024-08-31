@@ -78,19 +78,7 @@ class UserController {
     }
     }
 
-    static nonMoney = async(req, res) => {
-        let details = req.body
-        if(!(details.name && details.location && details.itemType && details.deliveryDate)) 
-            return res.status(400).json({"message": "not all fields given"})
-        await new NonMoneyDonationModel(details).save()
-        return res.status(200).json({"message": "saved"})
-    }
-
-    static getAllNonMoney = async(req, res) => {
-        let details = req.body
-        let response = await NonMoneyDonationModel.find().lean()
-        return res.status(200).json(response)
-    } 
+    
     
     static deleteDonation = async(req, res) => {
         try {
