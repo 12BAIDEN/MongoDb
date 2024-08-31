@@ -1,5 +1,5 @@
 import { DonationModel } from "../models/donations.js"
-import { NonMoneyDonationModel } from "../models/notMoneyDonations.js"
+
 import { DonationTypeModel } from "../models/types.js"
 import { UserModel } from "../models/users.js"
 
