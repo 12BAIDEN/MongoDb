@@ -24,19 +24,12 @@ nonAuthRoute.post("/admin/type", UserController.uploadTypes)
 */
 nonAuthRoute.get("/donations/:id", UserController.getDonationType)
 
-/*
-* Update a donation by its title.
-* Method: PUT
-* Access: Restricted to authorized administrators.
-*/
-nonAuthRoute.put("/admin/donation/:title", UserController.updateDonation);
+//get login
+nonAuthRoute.get("/items", UserController.getAllNonMoney)
+//delete donation
+nonAuthRoute.post("/admin/delete-donation", UserController.deleteDonation)
 
-/**
-* Delete a donation by its title.
-* Method: DELETE
-* Access: Restricted to authorized administrators.
-*/
-nonAuthRoute.delete("/admin/donation/:title", UserController.deleteDonation);
-
+//delete donation
+nonAuthRoute.post("/admin/update-donation", UserController.updateDonation)
 
 export { nonAuthRoute };
